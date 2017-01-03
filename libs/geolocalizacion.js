@@ -1,5 +1,5 @@
 
-/* Obtiene la posici髇 del usuario */
+/* Obtiene la posici贸n del usuario */
 
 var x = document.getElementById("mapa");
 function getLocation() {
@@ -11,13 +11,13 @@ function getLocation() {
     }
 }
 
-//Muestra la posici髇 del usuario de manera estatica
+//Muestra la posici贸n del usuario de manera estatica
 /*function showPosition(position) {
     x.innerHTML = "Latitude: " + position.coords.latitude + 
     "<br>Longitude: " + position.coords.longitude; 
 }*/
 
-//Muestra errores en la obtenci髇 de posiciones.
+//Muestra errores en la obtenci贸n de posiciones.
 function showError(error) {
     switch(error.code) {
         case error.PERMISSION_DENIED:
@@ -36,11 +36,20 @@ function showError(error) {
 }
 
 
-//muestra la posici髇 del usuario en un mapa de google
+//muestra la posici贸n del usuario en un mapa de google
 function showPosition(position) {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
+    var y=getElementById("mapholder");
 
     var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false";
 
     document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+    y.innerHTML="Latitud: "+position.coords.latitude;
+    y.innerHTML+="<br/>Longitud: "+position.coords.longitude;
+    y.innerHTML+="<br/>Precisi贸n: "+position.coords.accuracy;
+    y.innerHTML+="<br/>Altidud: "+position.coords.altitude;
+    y.innerHTML+="<br>Precisi贸n de Altidud: "+position.coords.altitudeAccuracy;
+    y.innerHTML+="<br>Heading: "+position.coords.heading;
+    y.innerHTML+="<br>Velocidad: "+position.coords.speed;
+    y.innerHTML+="<br>Fecha (en tiempo Unix): "+position.timestamp;
 }
